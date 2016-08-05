@@ -109,6 +109,11 @@
   :config
   (progn
     (setq flycheck-mode-line-prefix "F")
+
+    (after 'evil
+      (define-key evil-motion-state-map "[e" 'flycheck-previous-error)
+      (define-key evil-motion-state-map "]e" 'flycheck-next-error))
+
     (add-hook 'after-init-hook 'global-flycheck-mode)))
 
 ;;------------------------------------------------------------------------------

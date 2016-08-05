@@ -78,7 +78,7 @@
     (add-to-list 'initial-frame-alist '(font . "Monaco-12"))
     (add-to-list 'default-frame-alist '(font . "Monaco-12"))))
  ((string-equal system-type "gnu/linux") ; linux
-  (when (member "DejaVu Sans Mono" (font-family-list))
+  (when (member "Inconsolata" (font-family-list))
     (add-to-list 'initial-frame-alist '(font . "Inconsolata-10"))
     (add-to-list 'default-frame-alist '(font . "Inconsolata-10")))))
 

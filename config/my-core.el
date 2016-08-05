@@ -28,7 +28,7 @@
     (let ((option-found nil)
           (i 0)
           (len (length options)))
-      (while (and (not option-found) (<= i len))
+      (while (and (not option-found) (< i len))
         (if (file-exists-p (elt options i))
             (setq option-found (elt options i)))
         (setq i (1+ i)))

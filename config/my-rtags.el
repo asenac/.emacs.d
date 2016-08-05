@@ -41,6 +41,7 @@
         "rr" 'rtags-find-all-references-at-point
         "rf" 'rtags-find-file
         "rF" 'rtags-fixit
+        "rm" 'rtags-display-summary
         "rn" 'rtags-location-stack-forward
         "rb" 'rtags-location-stack-backward))
 

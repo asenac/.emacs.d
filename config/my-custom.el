@@ -37,6 +37,11 @@
 (evil-leader/set-key
   "ar" 'evil-replace-word-selection)
 
+(define-key evil-normal-state-map (kbd "TAB") 'evil-window-next)
+
+;; Don't wait for any other keys after escape is pressed.
+(setq evil-esc-delay 0)
+
 ;;------------------------------------------------------------------------------
 ;; gdb
 ;;------------------------------------------------------------------------------

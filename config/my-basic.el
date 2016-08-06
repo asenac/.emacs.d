@@ -16,18 +16,16 @@
 
 (setq-default tab-width 4)
 
-(defface extra-whitespace-face
-  '((t (:background "pale green")))
-  "Used for tabs and such.")
-(defvar my-extra-keywords
-  '(("\t" . 'extra-whitespace-face)))
-
+;; whitespace.el configuration
+(setq whitespace-style
+  '(face empty lines-tail tabs tab-mark trailing))
 (add-hook 'prog-mode-hook
           (lambda ()
-            ;; Draw tabs with the same color as trailing whitespace
-            (font-lock-add-keywords nil my-extra-keywords)
+            (whitespace-mode 1)
             ;; show unncessary whitespace that can mess up your diff
             (setq show-trailing-whitespace 1)))
+(require 'whitespace)
+(hbin-remove-mm-lighter 'whitespace-mode)
 
 (setq-default indent-tabs-mode nil)
 (setq c-default-style "linux"

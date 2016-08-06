@@ -20,6 +20,7 @@
     (use-package helm-mt :commands helm-mt)
     (use-package helm-projectile)
     (use-package helm-unicode :commands helm-unicode)
+    (use-package helm-themes :commands helm-themes)
 
     (setq helm-split-window-in-side-p t)
     (helm-mode 1)

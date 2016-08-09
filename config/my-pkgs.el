@@ -336,11 +336,17 @@
           '(:eval (if (file-remote-p default-directory)
                       " P"
                     (format " P[%s]" (projectile-project-name)))))
+
+    (defun projectile-multi-term-in-root ()
+      "Invoke `multi-term' in the project's root."
+      (interactive)
+      (projectile-with-default-dir (projectile-project-root) (multi-term)))
+
     (after 'evil-leader
       (evil-leader/set-key
         "ad" 'projectile-discover-projects-in-directory
         "ak" 'projectile-kill-buffers
-        "at" 'projectile-run-term
+        "at" 'projectile-multi-term-in-root
         "ac" 'projectile-run-shell-command-in-root
         "ab" 'projectile-compile-project))))
 

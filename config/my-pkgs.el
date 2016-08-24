@@ -91,6 +91,15 @@
   (progn
     (add-hook 'after-init-hook 'global-company-mode)
     (hbin-remove-mm-lighter 'company-mode)
+    (after 'evil
+        (define-key evil-insert-state-map (kbd "<C-return>") 'company-complete))
+
+    ;; Completion for java
+    (require 'company-eclim)
+
+    (defun my/java-mode-hook ()
+      (add-to-list 'company-backends 'company-eclim))
+    (add-hook 'java-mode-hook 'my/java-mode-hook)
 
     (use-package company-jedi
       ;; Disabled, completion provided by ycmd
@@ -99,7 +108,6 @@
       (progn
         (defun my/python-mode-hook ()
           (add-to-list 'company-backends 'company-jedi))
-
         (add-hook 'python-mode-hook 'my/python-mode-hook)))))
 
 ;;------------------------------------------------------------------------------

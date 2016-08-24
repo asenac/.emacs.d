@@ -29,19 +29,23 @@
 
     (after 'evil-leader
       (evil-leader/set-key-for-mode 'c-mode
+        "rj" 'rtags-find-symbol-at-point
+        "rv" 'rtags-find-virtuals-at-point
+        "rr" 'rtags-find-all-references-at-point
+        "rm" 'rtags-display-summary
         "i"  'rtags-imenu)
       (evil-leader/set-key-for-mode 'c++-mode
+        "rj" 'rtags-find-symbol-at-point
+        "rv" 'rtags-find-virtuals-at-point
+        "rr" 'rtags-find-all-references-at-point
+        "rm" 'rtags-display-summary
         "i"  'rtags-imenu)
       (evil-leader/set-key
         "rp" 'rtags-start-process-unless-running
         "rl" 'rtags-show-rtags-buffer
-        "rj" 'rtags-find-symbol-at-point
-        "rv" 'rtags-find-virtuals-at-point
         "rs" 'rtags-find-symbol
-        "rr" 'rtags-find-all-references-at-point
         "rf" 'rtags-find-file
         "rF" 'rtags-fixit
-        "rm" 'rtags-display-summary
         "rn" 'rtags-location-stack-forward
         "rb" 'rtags-location-stack-backward))
 

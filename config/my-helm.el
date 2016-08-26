@@ -1,4 +1,5 @@
 (use-package helm
+  :diminish 'helm-mode
   :config
   (progn
     (use-package helm-ack :commands helm-ack)
@@ -30,8 +31,6 @@
 
     (define-key helm-map [mouse-1] nil)
     (define-key helm-map [mouse-2] nil)
-
-    (hbin-remove-mm-lighter 'helm-mode)
 
     (defun my/helm-ag--project-root ()
       (cl-loop for dir in '("build/" ".root" ".git/" ".hg/" ".svn/" ".ycm_extra_conf.py")

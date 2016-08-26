@@ -15,7 +15,8 @@
   :config
   (progn
     ;; (use-package evil-magit)
-    (use-package evil-mc)
+    (use-package evil-mc
+      :diminish 'evil-mc-mode)
     (use-package evil-nerd-commenter
       :commands evilnc-comment-or-uncomment-lines
       :init
@@ -34,8 +35,6 @@
     (defalias #'forward-evil-word #'forward-evil-symbol))
 
     (evil-set-initial-state 'ibuffer-mode 'normal)
-
-    (hbin-remove-mm-lighter 'evil-mc-mode)
 
     (setq evil-emacs-state-cursor '("red" box))
     (setq evil-motion-state-cursor '("orange" box))

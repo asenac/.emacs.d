@@ -17,15 +17,20 @@
 (setq-default tab-width 4)
 
 ;; whitespace.el configuration
-(setq whitespace-style
-  '(face empty lines-tail tabs tab-mark trailing))
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (whitespace-mode 1)
-            ;; show unncessary whitespace that can mess up your diff
-            (setq show-trailing-whitespace 1)))
-(require 'whitespace)
-(hbin-remove-mm-lighter 'whitespace-mode)
+(use-package whitespace
+  :diminish whitespace-mode
+  :config
+  (progn
+    (setq whitespace-style
+          '(face empty lines-tail tabs tab-mark trailing))
+    (add-hook 'prog-mode-hook
+              (lambda ()
+                ;; (whitespace-mode 1)
+                ;; show unncessary whitespace that can mess up your diff
+                (setq show-trailing-whitespace 1)))
+    (after 'evil-leader
+      (evil-leader/set-key
+        "W" 'whitespace-mode))))
 
 (setq-default indent-tabs-mode nil)
 (setq c-default-style "linux"

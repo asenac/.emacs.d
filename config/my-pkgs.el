@@ -41,10 +41,10 @@
 ;; git-gutter
 ;;------------------------------------------------------------------------------
 (use-package git-gutter
+  :diminish 'git-gutter-mode
   :config
   (progn
     (global-git-gutter-mode t)
-    (hbin-remove-mm-lighter 'git-gutter-mode)
     (git-gutter:linum-setup)
     (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
     (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
@@ -56,12 +56,11 @@
 ;; yasnippet
 ;;------------------------------------------------------------------------------
 (use-package yasnippet
+  :diminish 'yas-minor-mode
   :defer 2
   :config
   (progn
     ;; (yas-global-mode 1)
-
-    (hbin-remove-mm-lighter 'yas-minor-mode)
 
     (after 'evil
       ;; Instead of enabling yasnippet globally I think it's better to enable it
@@ -87,10 +86,10 @@
 ;; company
 ;;------------------------------------------------------------------------------
 (use-package company
+  :diminish 'company-mode
   :config
   (progn
     (add-hook 'after-init-hook 'global-company-mode)
-    (hbin-remove-mm-lighter 'company-mode)
     (after 'evil
         (define-key evil-insert-state-map (kbd "<C-return>") 'company-complete))
 
@@ -128,6 +127,7 @@
 ;; ycmd
 ;;------------------------------------------------------------------------------
 (use-package ycmd
+  :diminish 'ycmd-mode
   :config
   (progn
     (let ((option-found (my/return-first-file-found
@@ -142,7 +142,6 @@
              (expand-file-name option-found) t)
             (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
             (ycmd-setup)
-            (hbin-remove-mm-lighter 'ycmd-mode)
 
             (after 'company
               (use-package company-ycmd)
@@ -319,19 +318,17 @@
 ;; indent-guide
 ;;------------------------------------------------------------------------------
 (use-package indent-guide
+  :diminish 'indent-guide-mode
   :defer t
   :config
   (progn
-    (indent-guide-global-mode)
-    (hbin-remove-mm-lighter 'indent-guide-mode)))
+    (indent-guide-global-mode)))
 
 ;;------------------------------------------------------------------------------
 ;; undo-tree
 ;;------------------------------------------------------------------------------
 (use-package undo-tree
-  :config
-  (progn
-    (hbin-remove-mm-lighter 'undo-tree-mode)))
+  :diminish 'undo-tree-mode)
 
 ;;------------------------------------------------------------------------------
 ;; projectile

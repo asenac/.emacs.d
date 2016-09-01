@@ -61,6 +61,7 @@
         "G" 'helm-google
         "le" 'helm-flycheck ;; list errors
         "e" 'helm-find-files
+        "x" 'helm-M-x
         "y" 'helm-show-kill-ring))
   ))
 

@@ -387,6 +387,8 @@
   :mode "\\.js\\'")
 (use-package json-mode
   :mode "\\.json\\'")
+(use-package bison-mode
+  :mode (("\\.ypp\\'" . bison-mode)))
 (use-package htmlize :defer t)
 (use-package simple-httpd :defer t)
 

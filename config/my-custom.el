@@ -188,6 +188,13 @@
   (interactive)
   (ff-find-other-file))
 
+;; .test<->.expected
+(require 'find-file)
+(setq-default ff-other-file-alist
+              (append '(("\\.expected\\'" (".test"))
+                        ("\\.test\\'" (".expected")))
+                      cc-other-file-alist))
+
 ;;------------------------------------------------------------------------------
 ;; C++
 ;;------------------------------------------------------------------------------

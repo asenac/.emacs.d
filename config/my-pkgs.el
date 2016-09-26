@@ -392,4 +392,12 @@
 (use-package htmlize :defer t)
 (use-package simple-httpd :defer t)
 
+(use-package string-inflection
+  :commands string-inflection-all-cycle
+  :init
+  (progn
+    (after 'evil-leader
+      (evil-leader/set-key
+        "cs" 'string-inflection-all-cycle))))
+
 (provide 'my-pkgs)

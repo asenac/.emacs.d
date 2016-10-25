@@ -7,6 +7,7 @@
   :ensure nil
   :config
   (progn
+    (require 'rtags-helm)
     (setq rtags-jump-to-first-match nil)
     (setq rtags-use-helm t)
     (setq rtags-use-bookmarks nil)

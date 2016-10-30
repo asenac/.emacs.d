@@ -50,6 +50,7 @@
     (after 'evil-leader
       (evil-leader/set-key
         "*" 'helm-occur
+        "A" 'helm-resume
         "ao" 'helm-projectile-switch-project
         "as" 'helm-projectile
         "lp" 'helm-projectile

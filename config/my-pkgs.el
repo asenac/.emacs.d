@@ -148,8 +148,8 @@
               (company-ycmd-setup))
 
             (after 'flycheck
-              (use-package flycheck-ycmd)
-              (flycheck-ycmd-setup)))
+              (use-package flycheck-ycmd
+                :config (flycheck-ycmd-setup))))
         ; Not found
         (message "Ycmd not found!")))))
 
@@ -399,5 +399,7 @@
     (after 'evil-leader
       (evil-leader/set-key
         "cs" 'string-inflection-all-cycle))))
+
+(use-package gud :ensure nil :commands lldb)
 
 (provide 'my-pkgs)

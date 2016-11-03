@@ -8,6 +8,7 @@
   :config
   (progn
     (require 'rtags-helm)
+    (require 'flycheck-rtags)
     (setq rtags-jump-to-first-match nil)
     (setq rtags-use-helm t)
     (setq rtags-use-bookmarks nil)
@@ -52,6 +53,7 @@
 
     (defun my-c-mode-common-hook ()
       ;; my customizations for all of c-mode and related modes
+      (flycheck-select-checker 'rtags)
       (local-set-key [s-mouse-1] 'rtags-find-symbol-at-point))
     (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
     )

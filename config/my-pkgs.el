@@ -373,6 +373,16 @@
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
 
 ;;------------------------------------------------------------------------------
+;; dashboard
+;;------------------------------------------------------------------------------
+(use-package dashboard
+  :config
+  (progn
+    (setq dashboard-items '((recents  . 20)
+                            (projects . 10)))
+    (dashboard-setup-startup-hook)))
+
+;;------------------------------------------------------------------------------
 ;; other packages
 ;;------------------------------------------------------------------------------
 (use-package magit :defer t)

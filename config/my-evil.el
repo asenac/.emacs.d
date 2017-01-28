@@ -43,6 +43,16 @@
     (setq evil-insert-state-cursor '("red" bar))
     (setq evil-replace-state-cursor '("red" bar))
     (setq evil-operator-state-cursor '("red" hollow))
+
+    (define-key evil-visual-state-map (kbd "TAB") 'indent-region)
     ))
+
+; When a region is active, as in evil’s visual mode, all the numbers within
+; that region will be incremented/decremented (unlike in vim)
+(use-package evil-numbers
+  :config
+  (progn
+    (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
+    (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)))
 
 (provide 'my-evil)

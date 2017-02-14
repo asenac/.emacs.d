@@ -51,11 +51,12 @@
         "rn" 'rtags-location-stack-forward
         "rb" 'rtags-location-stack-backward))
 
-    (defun my-c-mode-common-hook ()
+    (defun my-c-mode-hook ()
       ;; my customizations for all of c-mode and related modes
       (flycheck-select-checker 'rtags)
       (local-set-key [s-mouse-1] 'rtags-find-symbol-at-point))
-    (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+    (add-hook 'c-mode-hook 'my-c-mode-hook)
+    (add-hook 'c++-mode-hook 'my-c-mode-hook)
     )
   )
 

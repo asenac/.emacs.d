@@ -201,4 +201,59 @@
 (add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+;;------------------------------------------------------------------------------
+;; custom scripts: helm stuff
+;;------------------------------------------------------------------------------
+
+(defvar my/helm-execute-history nil)
+(defun my/find-executable-files (dir)
+  (split-string
+   (shell-command-to-string
+    (concat "find " dir " -type f -perm +111"))
+   "\n" t))
+(defun my/helm-execute (program)
+  (interactive (list
+                (helm-comp-read
+                 "Execute: "
+                 (my/find-executable-files (projectile-project-root))
+                 :must-match t
+                 :del-input nil
+                 :name "Execute"
+                 :history my/helm-execute-history)))
+  (compile program))
+
+(after 'evil-leader
+  (evil-leader/set-key
+    "ax" 'my/helm-execute))
+
+(defvar my/helm-gtest-history nil)
+(defun my/find-gtest-tests (dir)
+  (split-string
+   (shell-command-to-string
+    (concat "find " dir " -type f -perm +111 -name \"*.gtest\""))
+   "\n" t))
+(defun my/gtest-list-tests (test)
+  (let ((res '("*")))
+    (append res (split-string
+                 (shell-command-to-string
+                  (concat test " --gtest_list_tests"))
+                 "\n" t))))
+(defun my/helm-gtest (program)
+  (interactive (list
+                (helm-comp-read
+                 "Execute: "
+                 (my/find-gtest-tests (projectile-project-root))
+                 :must-match t
+                 :del-input nil
+                 :name "Execute"
+                 :history my/helm-gtest-history)))
+  (let ((filter
+         (helm-comp-read
+          "Filter: "
+          (my/gtest-list-tests program)
+          :must-match nil
+          :name "Filter")))
+    (compile (concat program " --gtest_filter="
+                     (shell-quote-argument filter)))))
+
 (provide 'my-custom)

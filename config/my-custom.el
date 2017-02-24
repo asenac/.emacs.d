@@ -222,22 +222,29 @@
                  :history my/helm-execute-history)))
   (compile program))
 
-(after 'evil-leader
-  (evil-leader/set-key
-    "ax" 'my/helm-execute))
-
-(defvar my/helm-gtest-history nil)
 (defun my/find-gtest-tests (dir)
+  "Find all gtest tests in dir"
   (split-string
    (shell-command-to-string
     (concat "find " dir " -type f -perm +111 -name \"*.gtest\""))
    "\n" t))
+
 (defun my/gtest-list-tests (test)
-  (let ((res '("*")))
-    (append res (split-string
-                 (shell-command-to-string
-                  (concat test " --gtest_list_tests"))
-                 "\n" t))))
+  "Get the tests for using --gtest_filter option"
+  (let ((res '("*"))
+        (current-suite "")
+        (list (split-string
+               (shell-command-to-string
+                (concat test " --gtest_list_tests"))
+               "\n" t)))
+    (cl-loop for x in list do
+             (if (string-prefix-p " " x)
+                 (add-to-list 'res (concat current-suite (string-trim-left x)))
+               (setq current-suite x)
+               (add-to-list 'res (concat current-suite "*"))))
+    (reverse res)))
+
+(defvar my/helm-gtest-history nil)
 (defun my/helm-gtest (program)
   (interactive (list
                 (helm-comp-read
@@ -255,5 +262,10 @@
           :name "Filter")))
     (compile (concat program " --gtest_filter="
                      (shell-quote-argument filter)))))
+
+(after 'evil-leader
+  (evil-leader/set-key
+    "az" 'my/helm-gtest
+    "ax" 'my/helm-execute))
 
 (provide 'my-custom)

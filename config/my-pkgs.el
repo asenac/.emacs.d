@@ -352,7 +352,7 @@
         "ad" 'projectile-discover-projects-in-directory
         "ak" 'projectile-kill-buffers
         "at" 'projectile-multi-term-in-root
-        "ac" 'projectile-run-shell-command-in-root
+        "ac" 'projectile-run-project
         "ab" 'projectile-compile-project))))
 
 ;;------------------------------------------------------------------------------

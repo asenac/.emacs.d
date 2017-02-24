@@ -392,13 +392,12 @@
 ;;------------------------------------------------------------------------------
 ;; dashboard
 ;;------------------------------------------------------------------------------
-;; (use-package dashboard
-;;   :config
-;;   (progn
-;;     (setq dashboard-startup-banner "/Users/asenac/Documents/nuodb_logo.png")
-;;     (setq dashboard-items '((recents  . 20)
-;;                             (projects . 10)))
-;;     (dashboard-setup-startup-hook)))
+(use-package dashboard
+  :config
+  (progn
+    (setq dashboard-items '((recents  . 20)
+                            (projects . 10)))
+    (dashboard-setup-startup-hook)))
 
 ;;------------------------------------------------------------------------------
 ;; other packages

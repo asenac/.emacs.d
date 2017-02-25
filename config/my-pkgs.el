@@ -403,6 +403,9 @@
 ;; other packages
 ;;------------------------------------------------------------------------------
 (use-package magit :defer t)
+(use-package git-timemachine
+  :defer t
+  :commands git-timemachine)
 (use-package cmake-mode
   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
          ("\\.cmake\\'" . cmake-mode)))

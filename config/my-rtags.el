@@ -30,7 +30,7 @@
       )
 
     (after 'hydra
-      (defhydra hydra-rtags (:color pink :hint nil)
+      (defhydra hydra-rtags (:color pink :hint nil :exit t)
         "
 
 [_j_]: symbol at point      [_s_]: find symbol    [_p_]: start process

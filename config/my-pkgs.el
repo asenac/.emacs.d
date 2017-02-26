@@ -434,5 +434,6 @@
 
 (use-package hydra)
 (use-package paradox)
+(use-package quickrun)
 
 (provide 'my-pkgs)

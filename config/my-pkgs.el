@@ -432,4 +432,7 @@
 
 (use-package gud :ensure nil :commands lldb)
 
+(use-package hydra)
+(use-package paradox)
+
 (provide 'my-pkgs)

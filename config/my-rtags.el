@@ -29,27 +29,50 @@
         (kbd "SPC") 'rtags-select-other-window)
       )
 
-    (after 'evil-leader
-      (evil-leader/set-key-for-mode 'c-mode
-        "rj" 'rtags-find-symbol-at-point
-        "rv" 'rtags-find-virtuals-at-point
-        "rr" 'rtags-find-all-references-at-point
-        "rm" 'rtags-display-summary
-        "i"  'rtags-imenu)
-      (evil-leader/set-key-for-mode 'c++-mode
-        "rj" 'rtags-find-symbol-at-point
-        "rv" 'rtags-find-virtuals-at-point
-        "rr" 'rtags-find-all-references-at-point
-        "rm" 'rtags-display-summary
-        "i"  'rtags-imenu)
-      (evil-leader/set-key
-        "rp" 'rtags-start-process-unless-running
-        "rl" 'rtags-show-rtags-buffer
-        "rs" 'rtags-find-symbol
-        "rf" 'rtags-find-file
-        "rF" 'rtags-fixit
-        "rn" 'rtags-location-stack-forward
-        "rb" 'rtags-location-stack-backward))
+    (after 'hydra
+      (defhydra hydra-rtags (:color pink :hint nil)
+        "
+
+[_j_]: symbol at point      [_s_]: find symbol    [_p_]: start process
+[_v_]: virtuals at point    [_f_]: find file      [_l_]: buffer
+[_r_]: refs at point        [_F_]: fixit
+[_m_]: summary              [_i_]: imenu
+
+"
+        ("j" rtags-find-symbol-at-point)
+        ("v" rtags-find-virtuals-at-point)
+        ("r" rtags-find-all-references-at-point)
+        ("m" rtags-display-summary)
+        ("i" rtags-imenu)
+        ("p" rtags-start-process-unless-running)
+        ("l" rtags-show-rtags-buffer)
+        ("s" rtags-find-symbol)
+        ("f" rtags-find-file)
+        ("F" rtags-fixit)
+        ("q" nil "cancel"))
+      (after 'evil-leader
+        (evil-leader/set-key-for-mode 'c-mode
+          ",r" 'hydra-rtags/body
+          "rj" 'rtags-find-symbol-at-point
+          "rv" 'rtags-find-virtuals-at-point
+          "rr" 'rtags-find-all-references-at-point
+          "rm" 'rtags-display-summary
+          "i"  'rtags-imenu)
+        (evil-leader/set-key-for-mode 'c++-mode
+          "rj" 'rtags-find-symbol-at-point
+          "rv" 'rtags-find-virtuals-at-point
+          "rr" 'rtags-find-all-references-at-point
+          "rm" 'rtags-display-summary
+          "i"  'rtags-imenu)
+        (evil-leader/set-key
+          ",r" 'hydra-rtags/body
+          "rp" 'rtags-start-process-unless-running
+          "rl" 'rtags-show-rtags-buffer
+          "rs" 'rtags-find-symbol
+          "rf" 'rtags-find-file
+          "rF" 'rtags-fixit
+          "rn" 'rtags-location-stack-forward
+          "rb" 'rtags-location-stack-backward)))
 
     (defun my-c-mode-hook ()
       ;; my customizations for all of c-mode and related modes

@@ -254,12 +254,13 @@
                  :del-input nil
                  :name "Execute"
                  :history my/helm-gtest-history)))
-  (let ((filter
-         (helm-comp-read
-          "Filter: "
-          (my/gtest-list-tests program)
-          :must-match nil
-          :name "Filter")))
+  (let* ((selected
+          (helm-comp-read
+           "Filter: "
+           (my/gtest-list-tests program)
+           :must-match nil
+           :name "Filter"))
+         (filter (string-trim (replace-regexp-in-string "#.*" "" selected))))
     (compile (concat program " --gtest_filter="
                      (shell-quote-argument filter)))))
 

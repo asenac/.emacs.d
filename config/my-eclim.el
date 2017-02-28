@@ -1,7 +1,7 @@
 (use-package eclim
   :config
   (progn
-    (global-eclim-mode)
+    (add-hook 'java-mode-hook 'eclim-mode)
 
     (after 'evil-leader
       (evil-leader/set-key-for-mode 'java-mode

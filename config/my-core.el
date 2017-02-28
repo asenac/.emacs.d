@@ -6,6 +6,9 @@
   (setcar (cdr (assq mm minor-mode-alist)) nil))
 
 (hbin-remove-mm-lighter 'abbrev-mode)
+;; Mode names typically end in "-mode", but for historical reasons
+;; auto-fill-mode is named by "auto-fill-function".
+(hbin-remove-mm-lighter 'auto-fill-function)
 
 ;;------------------------------------------------------------------------------
 ;; custom scripts: from <https://github.com/bling/dotemacs/>

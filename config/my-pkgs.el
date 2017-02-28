@@ -321,7 +321,6 @@
   (progn
     (require 'spaceline-config)
     (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-    (spaceline-toggle-buffer-size-off)
     (setq powerline-default-separator 'wave)
     (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
     (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
@@ -329,7 +328,11 @@
     (set-face-attribute 'spaceline-evil-normal nil :background "#a6e22e")
     (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
     (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
-    (spaceline-spacemacs-theme)))
+
+    (spaceline-toggle-buffer-size-off)
+    (spaceline-toggle-which-function-off)
+
+    (spaceline-spacemacs-theme '(projectile-root))))
 
 ;;------------------------------------------------------------------------------
 ;; indent-guide
@@ -351,6 +354,7 @@
 ;; projectile
 ;;------------------------------------------------------------------------------
 (use-package projectile
+  :diminish 'projectile-mode
   :config
   (progn
     (projectile-global-mode)

@@ -186,7 +186,7 @@
 
 (defun A ()
   (interactive)
-  (ff-find-other-file))
+  (ff-find-other-file nil t))
 
 ;; .test<->.expected
 (require 'find-file)

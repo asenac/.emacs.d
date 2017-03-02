@@ -52,7 +52,6 @@
         ("q" nil "cancel"))
       (after 'evil-leader
         (evil-leader/set-key-for-mode 'c-mode
-          ",r" 'hydra-rtags/body
           "rj" 'rtags-find-symbol-at-point
           "rv" 'rtags-find-virtuals-at-point
           "rr" 'rtags-find-all-references-at-point

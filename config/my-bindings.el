@@ -38,6 +38,7 @@
     "ao" 'helm-projectile-switch-project
     "as" 'helm-projectile
     "at" 'my/projectile-multi-term-in-root
+    "aT" 'projectile-run-eshell
     "ax" 'my/helm-execute
     "az" 'my/helm-gtest
     ))

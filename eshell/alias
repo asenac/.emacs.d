@@ -1,0 +1,3 @@
+alias ff find-file $1
+alias ffo find-file-other-window $1
+alias vim find-file-other-window $1

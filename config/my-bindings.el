@@ -11,6 +11,7 @@
     "h"  'my/evil-leader-describe-bindings
     "i"  'helm-imenu
     "k"  'kill-buffer
+    "K"  'kill-buffer-and-window
     "le" 'helm-flycheck ;; list errors
     "lr" 'linum-relative-toggle
     "m"  'minimap-mode

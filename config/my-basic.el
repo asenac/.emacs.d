@@ -28,9 +28,7 @@
                 ;; (whitespace-mode 1)
                 ;; show unncessary whitespace that can mess up your diff
                 (setq show-trailing-whitespace 1)))
-    (after 'evil-leader
-      (evil-leader/set-key
-        "W" 'whitespace-mode))))
+    ))
 
 (setq-default indent-tabs-mode nil)
 (setq c-default-style "linux"

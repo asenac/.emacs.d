@@ -27,6 +27,7 @@
 (require 'my-eclim)
 (require 'my-themes)
 (require 'my-custom)
+(require 'my-bindings)
 (require 'my-csharp)
 
 (global-set-key (kbd "<home>") 'beginning-of-line)

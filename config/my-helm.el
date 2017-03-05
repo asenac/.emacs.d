@@ -46,24 +46,6 @@
 
     (after 'evil
       (add-to-list 'evil-emacs-state-modes 'helm-major-mode))
-
-    (after 'evil-leader
-      (evil-leader/set-key
-        "*" 'helm-occur
-        "A" 'helm-resume
-        "ao" 'helm-projectile-switch-project
-        "as" 'helm-projectile
-        "lp" 'helm-projectile
-        "ae" 'helm-buffers-list
-        "ag" 'helm-projectile-ag
-        "s" 'helm-swoop
-        "M" 'helm-mini
-        "i" 'helm-imenu
-        "G" 'helm-google
-        "le" 'helm-flycheck ;; list errors
-        "e" 'helm-find-files
-        "x" 'helm-M-x
-        "y" 'helm-show-kill-ring))
   ))
 
 (provide 'my-helm)

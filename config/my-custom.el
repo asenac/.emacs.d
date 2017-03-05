@@ -2,13 +2,6 @@
 ;; evil
 ;;------------------------------------------------------------------------------
 
-(evil-leader/set-key
-  ;; others
-  "w" 'toggle-truncate-lines
-  "af" 'ff-find-other-file
-  "b" 'ibuffer
-  "k" 'kill-buffer)
-
 (defun evil-normalize-all-buffers ()
   "Force a drop to normal state."
   (unless (eq evil-state 'normal)
@@ -263,10 +256,5 @@
          (filter (string-trim (replace-regexp-in-string "#.*" "" selected))))
     (compile (concat program " --gtest_filter="
                      (shell-quote-argument filter)))))
-
-(after 'evil-leader
-  (evil-leader/set-key
-    "az" 'my/helm-gtest
-    "ax" 'my/helm-execute))
 
 (provide 'my-custom)

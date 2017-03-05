@@ -7,8 +7,6 @@
     (defun my/evil-leader-describe-bindings ()
       (interactive)
       (describe-bindings evil-leader/leader))
-    (evil-leader/set-key
-      "h" 'my/evil-leader-describe-bindings)
     ))
 
 (use-package evil
@@ -18,12 +16,7 @@
     (use-package evil-mc
       :diminish 'evil-mc-mode)
     (use-package evil-nerd-commenter
-      :commands evilnc-comment-or-uncomment-lines
-      :init
-      (progn
-        (after 'evil-leader
-          (evil-leader/set-key
-            "c SPC" 'evilnc-comment-or-uncomment-lines))))
+      :commands evilnc-comment-or-uncomment-lines)
     (use-package evil-surround)
     (use-package evil-visual-mark-mode :defer t)
 

@@ -32,10 +32,7 @@
        'evil-emacs-state-exit-hook
        (lambda ()
          (linum-relative-on))))
-
-    (after 'evil-leader
-      (evil-leader/set-key
-        "lr" 'linum-relative-toggle))))
+    ))
 
 ;;------------------------------------------------------------------------------
 ;; git-gutter
@@ -180,34 +177,19 @@
 ;; minimap
 ;;------------------------------------------------------------------------------
 (use-package minimap
-  :commands minimap-mode
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "m" 'minimap-mode))))
+  :commands minimap-mode)
 
 ;;------------------------------------------------------------------------------
 ;; clang-format
 ;;------------------------------------------------------------------------------
 (use-package clang-format
-  :commands clang-format
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "cf" 'clang-format))))
+  :commands clang-format)
 
 ;;------------------------------------------------------------------------------
 ;; fiplr
 ;;------------------------------------------------------------------------------
 (use-package fiplr
   :commands fiplr-find-file
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "f" 'fiplr-find-file)))
   :config
   (progn
     (setq fiplr-root-markers
@@ -217,23 +199,13 @@
 ;; browse-at-remote
 ;;------------------------------------------------------------------------------
 (use-package browse-at-remote
-  :commands browse-at-remote
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "of" 'browse-at-remote))))
+  :commands browse-at-remote)
 
 ;;------------------------------------------------------------------------------
 ;; zoom-window
 ;;------------------------------------------------------------------------------
 (use-package zoom-window
   :commands zoom-window-zoom
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "z" 'zoom-window-zoom)))
   :config
   (progn
     (setq zoom-window-mode-line-color "DarkGreen")))
@@ -242,12 +214,7 @@
 ;; multi-term
 ;;------------------------------------------------------------------------------
 (use-package multi-term
-  :commands multi-term
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "t" 'multi-term))))
+  :commands multi-term)
 
 ;;------------------------------------------------------------------------------
 ;; neotree
@@ -293,7 +260,6 @@
     (setq eopengrok-jar (expand-file-name "~/local/clj-opengrok-0.3.0-standalone.jar"))
     (if (string-equal system-type "darwin") ; Mac OS X
         (setq eopengrok-ctags "/usr/local/Cellar/ctags/5.8/bin/ctags")
-      (ding)
       (setq eopengrok-ctags "/usr/bin/ctags"))))
 
 ;;------------------------------------------------------------------------------
@@ -363,18 +329,11 @@
                       " P"
                     (format " P[%s]" (projectile-project-name)))))
 
-    (defun projectile-multi-term-in-root ()
+    (defun my/projectile-multi-term-in-root ()
       "Invoke `multi-term' in the project's root."
       (interactive)
       (projectile-with-default-dir (projectile-project-root) (multi-term)))
-
-    (after 'evil-leader
-      (evil-leader/set-key
-        "ad" 'projectile-discover-projects-in-directory
-        "ak" 'projectile-kill-buffers
-        "at" 'projectile-multi-term-in-root
-        "ac" 'projectile-run-project
-        "ab" 'projectile-compile-project))))
+    ))
 
 ;;------------------------------------------------------------------------------
 ;; restclient
@@ -427,12 +386,7 @@
 (use-package simple-httpd :defer t)
 
 (use-package string-inflection
-  :commands string-inflection-all-cycle
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "cs" 'string-inflection-all-cycle))))
+  :commands string-inflection-all-cycle)
 
 (use-package gud :ensure nil :commands lldb)
 

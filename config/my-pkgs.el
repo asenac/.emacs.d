@@ -74,10 +74,13 @@
        (lambda ()
          (yas-minor-mode -1))))
 
-    ;; (setq yas-snippet-dirs '("~/.emacs.d/el-get/yasnippet-snippets"))
-    (eval-after-load "yasnippet"
-      '(progn
-         (yas-reload-all)))))
+    (setq my-yasnippets (expand-file-name "~/.emacs.d/snippets"))
+    (if (and (file-exists-p my-yasnippets)
+             (not (member my-yasnippets yas-snippet-dirs)))
+        (add-to-list 'yas-snippet-dirs my-yasnippets))
+
+    (yas-reload-all)
+    ))
 
 ;;------------------------------------------------------------------------------
 ;; company

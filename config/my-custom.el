@@ -60,14 +60,14 @@
 
 (defun my/helm-prepare-display ()
   ;; workaround for a helm-evil incompatibility
-  ;; see https://github.com/syl20bnr/myissues/3700
+  ;; see https://github.com/syl20bnr/spacemacs/issues/3700
   (global-linum-mode -1)
   (when helm-prevent-escaping-from-minibuffer
     (define-key evil-motion-state-map [down-mouse-1] nil)))
 
 (defun my/restore-previous-display-config ()
   ;; workaround for a helm-evil incompatibility
-  ;; see https://github.com/syl20bnr/myissues/3700
+  ;; see https://github.com/syl20bnr/spacemacs/issues/3700
   (global-linum-mode 1)
   (when helm-prevent-escaping-from-minibuffer
     (define-key evil-motion-state-map [down-mouse-1] 'evil-mouse-drag-region)))

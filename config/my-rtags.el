@@ -10,7 +10,7 @@
     (require 'rtags-helm)
     (require 'flycheck-rtags)
     (setq rtags-jump-to-first-match nil)
-    (setq rtags-use-helm t)
+    (setq rtags-display-result-backend 'helm)
     (setq rtags-use-bookmarks nil)
     (rtags-enable-standard-keybindings)
 

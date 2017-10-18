@@ -79,8 +79,8 @@
     (add-to-list 'initial-frame-alist '(font . "Monaco-12"))
     (add-to-list 'default-frame-alist '(font . "Monaco-12"))))
  ((string-equal system-type "gnu/linux") ; linux
-  (when (member "Inconsolata" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Inconsolata-12"))
-    (add-to-list 'default-frame-alist '(font . "Inconsolata-12")))))
+  (when (member "Inconsolata for Powerline" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Inconsolata for Powerline-12"))
+    (add-to-list 'default-frame-alist '(font . "Inconsolata for Powerline-12")))))
 
 (provide 'my-basic)

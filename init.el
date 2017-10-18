@@ -29,6 +29,7 @@
 (require 'my-custom)
 (require 'my-bindings)
 (require 'my-csharp)
+(require 'my-go)
 
 (global-set-key (kbd "<home>") 'beginning-of-line)
 (global-set-key (kbd "<end>") 'end-of-line)

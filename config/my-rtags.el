@@ -7,7 +7,7 @@
   :ensure nil
   :config
   (progn
-    (require 'rtags-helm)
+    (require 'helm-rtags)
     (require 'flycheck-rtags)
     (setq rtags-jump-to-first-match nil)
     (setq rtags-display-result-backend 'helm)

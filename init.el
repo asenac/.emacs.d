@@ -34,4 +34,5 @@
 (global-set-key (kbd "<home>") 'beginning-of-line)
 (global-set-key (kbd "<end>") 'end-of-line)
 
-(use-package my-work :ensure nil)
+(if (not (require 'my-work nil t))
+    (message "It seems you are not at work... good for you"))

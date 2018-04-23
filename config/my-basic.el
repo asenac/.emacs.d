@@ -4,10 +4,8 @@
 
 ;; disable menu bar
 (menu-bar-mode -1)
-(if window-system
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 (setq enable-local-variables :safe)
 

@@ -53,14 +53,14 @@
       (after 'evil-leader
         (evil-leader/set-key-for-mode 'c-mode
           "rj" 'rtags-find-symbol-at-point
-          "rv" 'rtags-find-virtuals-at-point
           "rr" 'rtags-find-all-references-at-point
+          "rv" 'rtags-find-virtuals-at-point
           "rm" 'rtags-display-summary
           "i"  'rtags-imenu)
         (evil-leader/set-key-for-mode 'c++-mode
           "rj" 'rtags-find-symbol-at-point
-          "rv" 'rtags-find-virtuals-at-point
           "rr" 'rtags-find-all-references-at-point
+          "rv" 'rtags-find-virtuals-at-point
           "rm" 'rtags-display-summary
           "i"  'rtags-imenu)
         (evil-leader/set-key
@@ -72,15 +72,6 @@
           "rF" 'rtags-fixit
           "rn" 'rtags-location-stack-forward
           "rb" 'rtags-location-stack-backward)))
-
-    (defun my-c-mode-hook ()
-      ;; my customizations for all of c-mode and related modes
-      (if (not (string-equal major-mode "bison-mode"))
-          (flycheck-select-checker 'rtags))
-      (local-set-key [s-mouse-1] 'rtags-find-symbol-at-point))
-    (add-hook 'c-mode-hook 'my-c-mode-hook)
-    (add-hook 'c++-mode-hook 'my-c-mode-hook)
-    )
-  )
+    ))
 
 (provide 'my-rtags)

@@ -3,12 +3,17 @@
       (lsp-cquery-enable)
     (user-error nil)))
 
-(use-package lsp-mode)
+(use-package lsp-mode
+  :diminish 'lsp-mode)
 (use-package lsp-ui
   :config
   (progn
     (add-hook 'lsp-mode-hook 'lsp-ui-mode)))
-(use-package company-lsp)
+(use-package company-lsp
+  :disabled t
+  :config
+  (progn
+    (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)))
 (use-package cquery
   :commands lsp-cquery-enable
   :config
@@ -26,11 +31,11 @@
 
 (defun my-c-mode-hook ()
     (cquery//enable)
-    (add-to-list 'company-backends 'company-lsp)
+    ;; (add-to-list 'company-backends 'company-lsp)
     ;; my customizations for all of c-mode and related modes
     (if (not (string-equal major-mode "bison-mode"))
         (flycheck-select-checker 'rtags))
-;;         (flycheck-select-checker 'lsp-ui))
+        ;; (flycheck-select-checker 'lsp-ui))
     (local-set-key [s-mouse-1] 'rtags-find-symbol-at-point)
     )
 (add-hook 'c-mode-hook 'my-c-mode-hook)

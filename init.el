@@ -37,3 +37,7 @@
 
 (if (not (require 'my-work nil t))
     (message "It seems you are not at work... good for you"))
+
+(use-package diminish)
+(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
+(eval-after-load "eldoc" '(diminish 'eldoc-mode))

@@ -113,7 +113,7 @@
 ;; flycheck
 ;;------------------------------------------------------------------------------
 (use-package flycheck
-  :diminish 'flycheck-mode
+  ;; :diminish 'flycheck-mode
   :config
   (progn
     (setq flycheck-mode-line-prefix "F")
@@ -323,7 +323,7 @@
 ;; projectile
 ;;------------------------------------------------------------------------------
 (use-package projectile
-  :diminish 'projectile-mode
+  ;; :diminish 'projectile-mode
   :config
   (progn
     (projectile-global-mode)

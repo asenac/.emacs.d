@@ -19,6 +19,7 @@
   :config
   (progn
     (setq cquery-executable "~/dev/cquery/build/release/bin/cquery")
+    ;(setq cquery-extra-args '("--log-file=/tmp/cq.log"))
     (after 'evil-leader
       (evil-leader/set-key-for-mode 'c++-mode
         "cj" 'xref-find-definitions
@@ -30,7 +31,7 @@
     (setq xref-show-xrefs-function 'helm-xref-show-xrefs)))
 
 (defun my-c-mode-hook ()
-    (cquery//enable)
+    ;; (cquery//enable)
     ;; (add-to-list 'company-backends 'company-lsp)
     ;; my customizations for all of c-mode and related modes
     (if (not (string-equal major-mode "bison-mode"))

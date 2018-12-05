@@ -4,7 +4,8 @@
 (use-package exec-path-from-shell
   :config
   (progn
-    (exec-path-from-shell-initialize)))
+    (when (memq window-system '(mac ns x))
+      (exec-path-from-shell-initialize))))
 
 ;;------------------------------------------------------------------------------
 ;; linum-relative

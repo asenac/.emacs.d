@@ -72,6 +72,10 @@
 ;; font configuration
 ;;------------------------------------------------------------------------------
 (cond
+ ((string-equal system-type "windows-nt") ; Windows
+  (when (member "Consolas" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Consolas-10"))
+    (add-to-list 'default-frame-alist '(font . "Consolas-10"))))
  ((string-equal system-type "darwin") ; Mac OS X
   (when (member "Monaco" (font-family-list))
     (add-to-list 'initial-frame-alist '(font . "Monaco-12"))

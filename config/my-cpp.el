@@ -39,7 +39,9 @@
         ;; (flycheck-select-checker 'lsp-ui))
     (local-set-key [s-mouse-1] 'rtags-find-symbol-at-point)
     )
-(add-hook 'c-mode-hook 'my-c-mode-hook)
-(add-hook 'c++-mode-hook 'my-c-mode-hook)
+(if (not (string-equal system-type "windows-nt"))
+    (progn
+      (add-hook 'c-mode-hook 'my-c-mode-hook)
+      (add-hook 'c++-mode-hook 'my-c-mode-hook)))
 
 (provide 'my-cpp)

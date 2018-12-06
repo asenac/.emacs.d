@@ -2,10 +2,10 @@
 ;; exec-path-from-shell
 ;;------------------------------------------------------------------------------
 (use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
   :config
   (progn
-    (when (memq window-system '(mac ns x))
-      (exec-path-from-shell-initialize))))
+      (exec-path-from-shell-initialize)))
 
 ;;------------------------------------------------------------------------------
 ;; linum-relative
@@ -129,6 +129,7 @@
 ;; ycmd
 ;;------------------------------------------------------------------------------
 (use-package ycmd
+  :unless (string-equal system-type "windows-nt")
   :diminish 'ycmd-mode
   :config
   (progn
@@ -239,6 +240,7 @@
 ;; eopengrok
 ;;------------------------------------------------------------------------------
 (use-package eopengrok
+  :unless (string-equal system-type "windows-nt")
   :commands (eopengrok-make-index
              eopengrok-find-definition
              eopengrok-find-file

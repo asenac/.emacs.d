@@ -4,6 +4,7 @@
 ;;------------------------------------------------------------------------------
 (add-to-list 'load-path "~/local/rtags/share/emacs/site-lisp/rtags")
 (use-package rtags
+  :unless (string-equal system-type "windows-nt")
   :ensure nil
   :config
   (progn

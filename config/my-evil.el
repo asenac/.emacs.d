@@ -1,3 +1,5 @@
+(setq evil-search-module 'evil-search)
+
 (use-package evil-leader
   :config
   (progn
@@ -25,7 +27,8 @@
     (global-evil-surround-mode 1)
 
     (with-eval-after-load 'evil
-    (defalias #'forward-evil-word #'forward-evil-symbol))
+      (defalias #'forward-evil-word #'forward-evil-symbol))
+    (setq-default evil-symbol-word-search t)
 
     (evil-set-initial-state 'ibuffer-mode 'normal)
 

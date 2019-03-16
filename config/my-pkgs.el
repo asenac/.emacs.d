@@ -28,6 +28,7 @@
 (setq display-line-numbers "%4d \u2502 ")
 (setq display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'c-mode-common-hook #'display-line-numbers-mode)
 
 ;;------------------------------------------------------------------------------
 ;; yasnippet

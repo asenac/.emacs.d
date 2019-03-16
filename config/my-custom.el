@@ -42,7 +42,6 @@
   '(progn
      (define-key gud-mode-map (kbd "<up>") 'comint-previous-input)
      (define-key gud-mode-map (kbd "<down>") 'comint-next-input)))
-(add-hook 'gud-mode-hook (lambda() (linum-mode -1)))
 (setq gdb-many-windows t)
 
 ;;------------------------------------------------------------------------------
@@ -51,7 +50,6 @@
 (add-hook
  'term-mode-hook
  (lambda()
-   (linum-mode -1)
    (yas-minor-mode -1)))
 
 ;;------------------------------------------------------------------------------
@@ -61,14 +59,12 @@
 (defun my/helm-prepare-display ()
   ;; workaround for a helm-evil incompatibility
   ;; see https://github.com/syl20bnr/spacemacs/issues/3700
-  (global-linum-mode -1)
   (when helm-prevent-escaping-from-minibuffer
     (define-key evil-motion-state-map [down-mouse-1] nil)))
 
 (defun my/restore-previous-display-config ()
   ;; workaround for a helm-evil incompatibility
   ;; see https://github.com/syl20bnr/spacemacs/issues/3700
-  (global-linum-mode 1)
   (when helm-prevent-escaping-from-minibuffer
     (define-key evil-motion-state-map [down-mouse-1] 'evil-mouse-drag-region)))
 

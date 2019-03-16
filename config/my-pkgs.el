@@ -8,34 +8,6 @@
       (exec-path-from-shell-initialize)))
 
 ;;------------------------------------------------------------------------------
-;; linum-relative
-;;------------------------------------------------------------------------------
-(use-package linum-relative
-  :config
-  (progn
-    (global-linum-mode)
-    (if window-system
-        (setq linum-relative-format "%4s")
-      (setq linum-relative-format "%4s \u2502 "))
-    (if window-system
-        (setq linum-format "%4s")
-      (setq linum-format "%4s \u2502 "))
-    (setq linum-relative-current-symbol "")
-    (linum-relative-on)
-
-    (after 'evil
-      (add-hook
-       'evil-emacs-state-entry-hook
-       (lambda ()
-         (linum-relative-off)))
-
-      (add-hook
-       'evil-emacs-state-exit-hook
-       (lambda ()
-         (linum-relative-on))))
-    ))
-
-;;------------------------------------------------------------------------------
 ;; git-gutter
 ;;------------------------------------------------------------------------------
 (use-package git-gutter
@@ -43,12 +15,19 @@
   :config
   (progn
     (global-git-gutter-mode t)
-    (git-gutter:linum-setup)
     (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
     (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
     (after 'evil
       (define-key evil-motion-state-map "[c" 'git-gutter:previous-hunk)
       (define-key evil-motion-state-map "]c" 'git-gutter:next-hunk))))
+
+;;------------------------------------------------------------------------------
+;; linum-mode is obsolete in Emacs 26
+;; https://github.com/syohex/emacs-git-gutter/issues/156
+;;------------------------------------------------------------------------------
+(setq display-line-numbers "%4d \u2502 ")
+(setq display-line-numbers-type 'relative)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;------------------------------------------------------------------------------
 ;; yasnippet

@@ -13,7 +13,6 @@
     "k"  'kill-buffer
     "K"  'kill-buffer-and-window
     "le" 'helm-flycheck ;; list errors
-    "lr" 'linum-relative-toggle
     "m"  'minimap-mode
     "of" 'browse-at-remote
     "s"  'helm-swoop

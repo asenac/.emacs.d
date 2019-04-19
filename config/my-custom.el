@@ -47,10 +47,16 @@
 ;;------------------------------------------------------------------------------
 ;; term
 ;;------------------------------------------------------------------------------
-(add-hook
- 'term-mode-hook
- (lambda()
-   (yas-minor-mode -1)))
+;; https://github.com/syl20bnr/spacemacs/issues/2345
+(defun my/setup-term-mode ()
+  (evil-local-set-key 'insert (kbd "C-r") 'my/send-C-r))
+
+(defun my/send-C-r ()
+  (interactive)
+  (term-send-raw-string "\C-r"))
+
+(add-hook 'term-mode-hook 'my/setup-term-mode)
+(add-hook 'term-mode-hook (lambda() (yas-minor-mode -1)))
 
 ;;------------------------------------------------------------------------------
 ;; helm-evil incompatibility

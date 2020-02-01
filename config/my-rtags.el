@@ -2,8 +2,10 @@
 ;;------------------------------------------------------------------------------
 ;; rtags
 ;;------------------------------------------------------------------------------
-(add-to-list 'load-path "~/local/rtags/share/emacs/site-lisp/rtags")
+(defvar rtags-path "~/local/rtags/share/emacs/site-lisp/rtags")
+(add-to-list 'load-path rtags-path)
 (use-package rtags
+  :if (file-directory-p rtags-path)
   :unless (string-equal system-type "windows-nt")
   :ensure nil
   :config

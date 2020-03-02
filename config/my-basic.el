@@ -21,11 +21,13 @@
   (progn
     (setq whitespace-style
           '(face empty lines-tail tabs tab-mark trailing))
+    (global-whitespace-mode 1)
     (add-hook 'prog-mode-hook
               (lambda ()
                 ;; (whitespace-mode 1)
                 ;; show unncessary whitespace that can mess up your diff
                 (setq show-trailing-whitespace 1)))
+                (setq whitespace-line-column 120)
     ))
 
 (setq-default indent-tabs-mode nil)

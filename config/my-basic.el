@@ -62,8 +62,8 @@
 (setq-default truncate-lines t)
 
 ;; Start maximized, please
-(custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+;; (custom-set-variables
+;;  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 ;; Answer "y" rather than "yes"
 (defalias 'yes-or-no-p 'y-or-n-p)

@@ -25,7 +25,6 @@
 (require 'my-helm)
 (require 'my-rtags)
 (require 'my-pkgs)
-(require 'my-eclim)
 (require 'my-themes)
 (require 'my-custom)
 (require 'my-bindings)

@@ -74,13 +74,6 @@
     (after 'evil
         (define-key evil-insert-state-map (kbd "<C-return>") 'company-complete))
 
-    ;; Completion for java
-    (require 'company-eclim)
-
-    (defun my/java-mode-hook ()
-      (add-to-list 'company-backends 'company-eclim))
-    (add-hook 'java-mode-hook 'my/java-mode-hook)
-
     (use-package company-jedi
       ;; Disabled, completion provided by ycmd
       :disabled t
@@ -106,6 +99,12 @@
     (add-hook 'after-init-hook 'global-flycheck-mode)))
 
 ;;------------------------------------------------------------------------------
+;; flyspell
+;;------------------------------------------------------------------------------
+(use-package flyspell
+  :diminish 'flyspell-prog-mode)
+
+;;------------------------------------------------------------------------------
 ;; ycmd
 ;;------------------------------------------------------------------------------
 (use-package ycmd
@@ -123,7 +122,7 @@
             (add-to-list
              'ycmd-server-command
              (expand-file-name option-found) t)
-            (set-variable 'ycmd-extra-conf-whitelist '("~/*"))
+            (set-variable 'ycmd-extra-conf-whitelist '("~/*" "/*"))
             (ycmd-setup)
 
             (after 'company

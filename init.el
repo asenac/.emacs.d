@@ -31,6 +31,7 @@
 (require 'my-csharp)
 (require 'my-go)
 (require 'my-cpp)
+(require 'my-rust)
 
 (global-set-key (kbd "<home>") 'beginning-of-line)
 (global-set-key (kbd "<end>") 'end-of-line)

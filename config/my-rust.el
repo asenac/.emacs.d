@@ -6,7 +6,8 @@
 (use-package toml-mode)
 
 (use-package rust-mode
-  :hook (rust-mode . lsp))
+  :hook (rust-mode . lsp)
+  :config (setq rust-format-on-save t))
 
 ;; Add keybindings for interacting with Cargo
 (use-package cargo
@@ -21,5 +22,8 @@
 
 (add-hook 'rust-mode-hook
           (lambda () (setq indent-tabs-mode nil)))
+
+(after 'lsp-mode
+  (setq lsp-rust-server 'rust-analyzer))
 
 (provide 'my-rust)

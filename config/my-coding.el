@@ -218,10 +218,12 @@
   :config
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
-(use-package company-lsp
-  :ensure t
-  ;; Allow ccls to handle completion
-  :config
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
+(use-package helm-lsp)
+
+;(use-package company-lsp
+  ;:ensure t
+  ;;; Allow ccls to handle completion
+  ;:config
+  ;(setq company-transformers nil
+        ;company-lsp-async t
+        ;company-lsp-cache-candidates nil))

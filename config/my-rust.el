@@ -8,9 +8,6 @@
 (use-package cargo
   :hook (rust-mode . cargo-minor-mode))
 
-(use-package flycheck-rust
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-
 ;; (use-package rustic
 ;;   :ensure t
 ;;   :config (setq rustic-lsp-format t))
@@ -20,6 +17,7 @@
 
 (after 'lsp-mode
   (setq lsp-rust-server 'rust-analyzer)
+  (setq lsp-rust-analyzer-server-command '("~/.emacs.d/bin/rust-analyzer-wrapper.sh"))
   (setq lsp-rust-analyzer-proc-macro-enable t)  ; get access to proc macros, will eventually be on by default
   (setq lsp-rust-analyzer-import-merge-behaviour "last") ; materialize import style
   (setq lsp-rust-analyzer-cargo-load-out-dirs-from-check t) ; ensure coordinated compilation dirs
@@ -35,5 +33,10 @@
     "ls" 'helm-lsp-workspace-symbol)
   )
 
+;; disable all rust related checkers but lsp
+(after 'flycheck
+  (add-to-list 'flycheck-disabled-checkers 'cargo)
+  (add-to-list 'flycheck-disabled-checkers 'rust)
+  (add-to-list 'flycheck-disabled-checkers 'rust-clippy))
 
 (provide 'my-rust)

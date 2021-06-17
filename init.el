@@ -32,6 +32,7 @@
 (require 'my-go)
 (require 'my-cpp)
 (require 'my-rust)
+(require 'my-materialize)
 
 (global-set-key (kbd "<home>") 'beginning-of-line)
 (global-set-key (kbd "<end>") 'end-of-line)

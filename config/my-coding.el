@@ -218,6 +218,10 @@
   :config
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
 
+;; recommendations from https://emacs-lsp.github.io/lsp-mode/page/performance/
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 (use-package helm-lsp)
 
 ;(use-package company-lsp

@@ -157,61 +157,6 @@
 (use-package lsp-ui
   :ensure t)
 
-(use-package ccls
-  :ensure t
-  :after lsp-mode
-  :config
-  ;; Enable for debugging
-  (setq ccls-args '("--log-file=/tmp/ccls.out" "-v=1"))
-
-  (defun ccls/callee () (interactive) (lsp-ui-peek-find-custom "$ccls/call" '(:callee t)))
-  (defun ccls/caller () (interactive) (lsp-ui-peek-find-custom "$ccls/call"))
-
-  (defun ccls/base ()
-    (interactive)
-    (lsp-ui-peek-find-custom "$ccls/inheritance"))
-  (defun ccls/derived ()
-    (interactive)
-    (lsp-ui-peek-find-custom "$ccls/inheritance" `(:derived t)))
-
-  (defun ccls/vars ()
-    (interactive)
-    (lsp-ui-peek-find-custom "$ccls/vars"))
-  (defun ccls/member ()
-    (interactive)
-    (lsp-ui-peek-find-custom "$ccls/member"))
-
-  ;; References w/ Role::Role
-  (defun ccls/references-read ()
-    (interactive)
-    (lsp-ui-peek-find-custom "textDocument/references"
-                             (plist-put (lsp--text-document-position-params) :role 8)))
-
-  ;; References w/ Role::Write
-  (defun ccls/references-write ()
-    (interactive)
-    (lsp-ui-peek-find-custom "textDocument/references"
-                             (plist-put (lsp--text-document-position-params) :role 16)))
-
-  ;; References w/ Role::Dynamic bit (macro expansions)
-  (defun ccls/references-macro ()
-    (interactive)
-    (lsp-ui-peek-find-custom "textDocument/references"
-                             (plist-put (lsp--text-document-position-params) :role 64)))
-
-  ;; References w/o Role::Call bit (e.g. where functions are taken addresses)
-  (defun ccls/references-not-call ()
-    (interactive)
-    (lsp-ui-peek-find-custom "textDocument/references"
-                             (plist-put (lsp--text-document-position-params) :excludeRole 32)))
-
-  (after 'evil-leader
-    (evil-leader/set-key-for-mode 'c-mode
-      "lc" 'ccls/caller)
-    (evil-leader/set-key-for-mode 'c++-mode
-      "lc" 'ccls/caller))
-)
-
 (after 'evil-leader
   (evil-leader/set-key-for-mode 'c-mode
     "lj" 'lsp-find-definition

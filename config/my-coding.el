@@ -145,7 +145,9 @@
         lsp-prefer-flymake nil
         ;; Kill the server when the last buffer in the workspace is deleted.
         lsp-keep-workspace-alive nil
-        lsp-enable-file-watchers nil)
+        lsp-enable-file-watchers nil
+        ;; This is just too slow in medium-size files
+        lsp-lens-enable nil)
 
   ;; We need to use this instead of c-mode-common-hook etc. so it can
   ;; obey file-local and directory-local variable settings.
@@ -205,18 +207,22 @@
 
   (after 'evil-leader
     (evil-leader/set-key-for-mode 'c-mode
-      "lc" 'ccls/caller
-      "lj" 'lsp-find-definition
-      "lr" 'lsp-find-references)
+      "lc" 'ccls/caller)
     (evil-leader/set-key-for-mode 'c++-mode
-      "lc" 'ccls/caller
-      "lj" 'lsp-find-definition
-      "lr" 'lsp-find-references))
+      "lc" 'ccls/caller))
 )
+
+(after 'evil-leader
+  (evil-leader/set-key-for-mode 'c-mode
+    "lj" 'lsp-find-definition
+    "lr" 'lsp-find-references)
+  (evil-leader/set-key-for-mode 'c++-mode
+    "lj" 'lsp-find-definition
+    "lr" 'lsp-find-references))
 
 (use-package helm-xref
   :config
-  (setq xref-show-xrefs-function 'helm-xref-show-xrefs))
+  (setq xref-show-xrefs-function 'helm-xref-show-xrefs-27))
 
 ;; recommendations from https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq gc-cons-threshold 100000000)

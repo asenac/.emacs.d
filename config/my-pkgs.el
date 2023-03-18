@@ -132,8 +132,7 @@
 ;; indent-guide
 ;;------------------------------------------------------------------------------
 (use-package indent-guide
-  :diminish 'indent-guide-mode
-  :defer t
+  ;; :diminish 'indent-guide-mode
   :config
   (progn
     (indent-guide-global-mode)))

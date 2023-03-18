@@ -131,8 +131,6 @@
 ;;------------------------------------------------------------------------------
 (setq frame-title-format
       '(
-        ;; (:eval (if (my-current-changelist)
-        ;;            (concat (my-current-changelist) " - ")))
         (:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))

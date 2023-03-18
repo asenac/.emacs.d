@@ -51,18 +51,18 @@
 ;;------------------------------------------------------------------------------
 ;; server
 ;;------------------------------------------------------------------------------
-(use-package server
-  :defer t
-  :config
-  (progn
-    (unless (server-running-p)
-      (server-start))))
+;; (use-package server
+;;   :defer t
+;;   :config
+;;   (progn
+;;     (unless (server-running-p)
+;;       (server-start))))
 
 ;;------------------------------------------------------------------------------
 ;; minimap
 ;;------------------------------------------------------------------------------
-(use-package minimap
-  :commands minimap-mode)
+;; (use-package minimap
+;;   :commands minimap-mode)
 
 ;;------------------------------------------------------------------------------
 ;; fiplr
@@ -72,22 +72,16 @@
   :config
   (progn
     (setq fiplr-root-markers
-          '(".git" ".svn" ".root" ".ycm_extra_conf.py"))))
+          '(".git" ".svn" ".root" "src"))
+    (setq fiplr-ignored-globs '((directories (".git" ".svn" ".cache" "build*" "contrib"))
+                                (files ("*.jpg" "*.png" "*.zip" "*~" "*.idx"))))
+    ))
 
-;;------------------------------------------------------------------------------
+;; ------------------------------------------------------------------------------
 ;; browse-at-remote
-;;------------------------------------------------------------------------------
+;; ------------------------------------------------------------------------------
 (use-package browse-at-remote
   :commands browse-at-remote)
-
-;;------------------------------------------------------------------------------
-;; zoom-window
-;;------------------------------------------------------------------------------
-(use-package zoom-window
-  :commands zoom-window-zoom
-  :config
-  (progn
-    (setq zoom-window-mode-line-color "DarkGreen")))
 
 ;;------------------------------------------------------------------------------
 ;; multi-term
@@ -98,38 +92,24 @@
 ;;------------------------------------------------------------------------------
 ;; neotree
 ;;------------------------------------------------------------------------------
-(use-package neotree
-  :commands neotree)
+;; (use-package neotree
+;;   :commands neotree)
 
 ;;------------------------------------------------------------------------------
-;; org-mode
+;; treemacs
 ;;------------------------------------------------------------------------------
-(use-package org
-  :defer t
-  :config
-  (progn
-    (use-package org-bullets)))
+(use-package treemacs)
+(use-package treemacs-evil
+  :after (treemacs evil)
+  :ensure t)
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t)
 
 ;;------------------------------------------------------------------------------
 ;; telephone-line
 ;;------------------------------------------------------------------------------
-(use-package telephone-line
-  :disabled t
-  :config
-  (progn
-    (setq telephone-line-lhs
-          '((evil   . (telephone-line-evil-tag-segment))
-            (accent . (telephone-line-vc-segment
-                       telephone-line-erc-modified-channels-segment
-                       telephone-line-process-segment))
-            (nil    . (telephone-line-minor-mode-segment
-                       telephone-line-buffer-segment))))
-    (setq telephone-line-rhs
-          '((nil    . (telephone-line-misc-info-segment))
-            (accent . (telephone-line-major-mode-segment))
-            (evil   . (telephone-line-airline-position-segment))))
-    (telephone-line-mode 1)))
-
 (use-package spaceline
   :config
   (progn
@@ -184,15 +164,6 @@
     ))
 
 ;;------------------------------------------------------------------------------
-;; restclient
-;;------------------------------------------------------------------------------
-(use-package restclient
-  :commands restclient-mode
-  :config
-  (progn
-    (use-package restclient-helm)))
-
-;;------------------------------------------------------------------------------
 ;; rainbow-delimiters
 ;;------------------------------------------------------------------------------
 (use-package rainbow-delimiters
@@ -238,8 +209,6 @@
 
 (use-package gud :ensure nil :commands lldb)
 
-(use-package hydra)
 (use-package paradox)
-(use-package quickrun)
 
 (provide 'my-pkgs)

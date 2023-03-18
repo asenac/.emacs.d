@@ -62,20 +62,20 @@
 ;; helm-evil incompatibility
 ;;------------------------------------------------------------------------------
 
-(defun my/helm-prepare-display ()
-  ;; workaround for a helm-evil incompatibility
-  ;; see https://github.com/syl20bnr/spacemacs/issues/3700
-  (when helm-prevent-escaping-from-minibuffer
-    (define-key evil-motion-state-map [down-mouse-1] nil)))
+;; (defun my/helm-prepare-display ()
+;;   ;; workaround for a helm-evil incompatibility
+;;   ;; see https://github.com/syl20bnr/spacemacs/issues/3700
+;;   (when helm-prevent-escaping-from-minibuffer
+;;     (define-key evil-motion-state-map [down-mouse-1] nil)))
 
-(defun my/restore-previous-display-config ()
-  ;; workaround for a helm-evil incompatibility
-  ;; see https://github.com/syl20bnr/spacemacs/issues/3700
-  (when helm-prevent-escaping-from-minibuffer
-    (define-key evil-motion-state-map [down-mouse-1] 'evil-mouse-drag-region)))
+;; (defun my/restore-previous-display-config ()
+;;   ;; workaround for a helm-evil incompatibility
+;;   ;; see https://github.com/syl20bnr/spacemacs/issues/3700
+;;   (when helm-prevent-escaping-from-minibuffer
+;;     (define-key evil-motion-state-map [down-mouse-1] 'evil-mouse-drag-region)))
 
-(add-hook 'helm-after-initialize-hook 'my/helm-prepare-display)
-(add-hook 'helm-cleanup-hook 'my/restore-previous-display-config)
+;; (add-hook 'helm-after-initialize-hook 'my/helm-prepare-display)
+;; (add-hook 'helm-cleanup-hook 'my/restore-previous-display-config)
 
 ;;------------------------------------------------------------------------------
 ;; clipboard
@@ -127,43 +127,12 @@
         (message (concat "Wrote " (buffer-file-name))))))
 
 ;;------------------------------------------------------------------------------
-;; custom scripts: add file to changelist on save
-;;------------------------------------------------------------------------------
-(defun my-current-changelist ()
-  (getenv "CHANGELIST"))
-
-(defun my-add-to-changelist (changelist file-name)
-  (progn (shell-command (concat "svn add " file-name))
-         (shell-command (concat "svn cl " changelist " " file-name))
-         (message (concat "Added " file-name " to changelist " changelist))))
-
-(defun my-get-svn-status (file-name)
-  (shell-command-to-string (concat "svn st " file-name)))
-
-(add-hook
- 'after-save-hook
- (lambda ()
-   ;; Add the saved file to the current changelist if defined
-   (if (and (my-current-changelist)
-            (not (string-match ".*not a working copy$"
-                               (my-get-svn-status (buffer-file-name)))))
-       (my-add-to-changelist (my-current-changelist) (buffer-file-name)))))
-
-(defun set-changelist (changelist)
-  (interactive "sChangelist: \n")
-  (setenv "CHANGELIST" changelist)
-  (message (concat "Set changelist: " changelist)))
-
-(defun print-current-changelist ()
-  (interactive)
-  (message (my-current-changelist)))
-
-;;------------------------------------------------------------------------------
 ;; Custom window title
 ;;------------------------------------------------------------------------------
 (setq frame-title-format
-      '((:eval (if (my-current-changelist)
-                   (concat (my-current-changelist) " - ")))
+      '(
+        ;; (:eval (if (my-current-changelist)
+        ;;            (concat (my-current-changelist) " - ")))
         (:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))
@@ -204,7 +173,8 @@
 (defun my/find-executable-files (dir)
   (split-string
    (shell-command-to-string
-    (concat "find " dir " -type f -perm +111"))
+    ;; (concat "find " dir " -type f -perm +111"))
+    (concat "find " dir " -type f executable"))
    "\n" t))
 (defun my/helm-execute (program)
   (interactive (list
@@ -221,7 +191,8 @@
   "Find all gtest tests in dir"
   (split-string
    (shell-command-to-string
-    (concat "find " dir " -type f -perm +111 -name \"*.gtest\""))
+    ;; (concat "find " dir " -type f -perm +111 -name \"*.gtest\""))
+    (concat "find " dir " -type f -executable"))
    "\n" t))
 
 (defun my/gtest-list-tests (test)
@@ -246,7 +217,7 @@
                  "Execute: "
                  (my/find-gtest-tests (projectile-project-root))
                  :must-match t
-                 :del-input nil
+                 ;; :del-input nil
                  :name "Execute"
                  :history my/helm-gtest-history)))
   (let* ((selected

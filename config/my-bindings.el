@@ -13,7 +13,7 @@
     "k"  'kill-buffer
     "K"  'kill-buffer-and-window
     "le" 'helm-flycheck ;; list errors
-    "m"  'minimap-mode
+    ;; "m"  'minimap-mode
     "of" 'browse-at-remote
     "s"  'helm-swoop
     "t"  'multi-term
@@ -33,10 +33,11 @@
     "ad" 'projectile-discover-projects-in-directory
     "ae" 'helm-buffers-list
     "af" 'ff-find-other-file
-    "ag" 'helm-projectile-ag
+    "ag" 'helm-projectile-rg
     "ak" 'projectile-kill-buffers
     "ao" 'helm-projectile-switch-project
-    "as" 'helm-projectile
+    ;; "as" 'helm-projectile
+    "as" 'helm-find-files
     "at" 'my/projectile-multi-term-in-root
     "aT" 'projectile-run-eshell
     "ax" 'my/helm-execute

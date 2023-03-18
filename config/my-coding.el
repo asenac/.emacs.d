@@ -1,68 +1,4 @@
 ;;------------------------------------------------------------------------------
-;; eopengrok
-;;------------------------------------------------------------------------------
-(use-package eopengrok
-  :unless (string-equal system-type "windows-nt")
-  :commands (eopengrok-make-index
-             eopengrok-find-definition
-             eopengrok-find-file
-             eopengrok-find-reference
-             eopengrok-find-text
-             eopengrok-find-history
-             eopengrok-switch-to-buffer
-             eopengrok-jump-to-source)
-  :init
-  (progn
-    (after 'evil-leader
-      (evil-leader/set-key
-        "ogi" 'eopengrok-make-index
-        "ogd" 'eopengrok-find-definition
-        "ogf" 'eopengrok-find-file
-        "ogr" 'eopengrok-find-reference
-        "ogt" 'eopengrok-find-text
-        "ogh" 'eopengrok-find-history
-        "ogb" 'eopengrok-switch-to-buffer
-        "ogj" 'eopengrok-jump-to-source)))
-  :config
-  (progn
-    (setq eopengrok-jar (expand-file-name "~/local/clj-opengrok-0.3.0-standalone.jar"))
-    (if (string-equal system-type "darwin") ; Mac OS X
-        (setq eopengrok-ctags "/usr/local/Cellar/ctags/5.8/bin/ctags")
-      (setq eopengrok-ctags "/usr/bin/ctags"))))
-
-;;------------------------------------------------------------------------------
-;; ycmd
-;;------------------------------------------------------------------------------
-(use-package ycmd
-  :disabled t
-  :unless (string-equal system-type "windows-nt")
-  ;; :diminish 'ycmd-mode
-  :config
-  (progn
-    (let ((option-found (my/return-first-file-found
-                         ["~/.emacs.d/static/ycmd/ycmd"
-                         "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd"])))
-      (if option-found
-          (progn
-            (message (concat "Ycmd found at: " option-found))
-            (set-variable 'ycmd-server-command '("python"))
-            (add-to-list
-             'ycmd-server-command
-             (expand-file-name option-found) t)
-            (set-variable 'ycmd-extra-conf-whitelist '("~/*" "/*"))
-            (ycmd-setup)
-
-            (after 'company
-              (use-package company-ycmd)
-              (company-ycmd-setup))
-
-            (after 'flycheck
-              (use-package flycheck-ycmd
-                :config (flycheck-ycmd-setup))))
-        ; Not found
-        (message "Ycmd not found!")))))
-
-;;------------------------------------------------------------------------------
 ;; flycheck
 ;;------------------------------------------------------------------------------
 (use-package flycheck
@@ -122,18 +58,8 @@
   (progn
     (add-hook 'after-init-hook 'global-company-mode)
     (after 'evil
-        (define-key evil-insert-state-map (kbd "<C-return>") 'company-complete))
+        (define-key evil-insert-state-map (kbd "<C-return>") 'company-complete))))
 
-    (use-package company-jedi
-      ;; Disabled, completion provided by ycmd
-      :disabled t
-      :config
-      (progn
-        (defun my/python-mode-hook ()
-          (add-to-list 'company-backends 'company-jedi))
-        (add-hook 'python-mode-hook 'my/python-mode-hook)))))
-
-(provide 'my-coding)
 
 ;;------------------------------------------------------------------------------
 ;; lsp
@@ -146,16 +72,29 @@
         ;; Kill the server when the last buffer in the workspace is deleted.
         lsp-keep-workspace-alive nil
         lsp-enable-file-watchers nil
+        lsp-enable-imenu nil
         ;; This is just too slow in medium-size files
         lsp-lens-enable nil)
 
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
+
   ;; We need to use this instead of c-mode-common-hook etc. so it can
   ;; obey file-local and directory-local variable settings.
-  (add-hook 'hack-local-variables-hook
-            (lambda () (when (derived-mode-p 'c-mode 'c++-mode) (lsp)))))
+  ;; (add-hook 'hack-local-variables-hook
+  ;;           (lambda () (when (derived-mode-p 'c-mode 'c++-mode) (lsp))))
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024)
+        company-idle-delay 0.0
+        company-minimum-prefix-length 1
+        lsp-idle-delay 0.1)  ;; clangd is fast
+  )
 
-(use-package lsp-ui
-  :ensure t)
+(after 'projectile
+  (add-to-list 'projectile-globally-ignored-directories "contrib"))
+
+;; (use-package lsp-ui
+;;   :ensure t)
 
 (after 'evil-leader
   (evil-leader/set-key-for-mode 'c-mode
@@ -169,16 +108,26 @@
   :config
   (setq xref-show-xrefs-function 'helm-xref-show-xrefs-27))
 
-;; recommendations from https://emacs-lsp.github.io/lsp-mode/page/performance/
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
-
 (use-package helm-lsp)
 
-;(use-package company-lsp
-  ;:ensure t
-  ;;; Allow ccls to handle completion
-  ;:config
-  ;(setq company-transformers nil
-        ;company-lsp-async t
-        ;company-lsp-cache-candidates nil))
+;; (use-package company-lsp
+;;   :ensure t
+;;   :config
+;;   (setq company-transformers nil
+;;         company-lsp-async t
+;;         company-lsp-cache-candidates nil))
+
+;; (flycheck-define-checker
+;;     python-mypy ""
+;;     :command ("mypy"
+;;               "--ignore-missing-imports" 
+;;               "--python-version" "3.8"
+;;               source-original)
+;;     :error-patterns
+;;     ((error line-start (file-name) ":" line ": error:" (message) line-end))
+;;     :modes python-mode)
+
+;; (add-to-list 'flycheck-checkers 'python-mypy t)
+;; (flycheck-add-next-checker 'python-pylint 'python-mypy t)
+
+(provide 'my-coding)

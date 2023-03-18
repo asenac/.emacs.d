@@ -10,3 +10,6 @@ custom.el
 eshell/history
 eshell/lastdir
 session.*
+eln-cache
+transient
+.lsp-session*

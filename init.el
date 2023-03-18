@@ -28,10 +28,10 @@
 (require 'my-coding)
 (require 'my-custom)
 (require 'my-bindings)
-(require 'my-csharp)
-(require 'my-go)
+;; (require 'my-csharp)
+;; (require 'my-go)
 (require 'my-cpp)
-(require 'my-rust)
+;; (require 'my-rust)
 (require 'my-materialize)
 
 (global-set-key (kbd "<home>") 'beginning-of-line)

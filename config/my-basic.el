@@ -70,6 +70,8 @@
 ;; Answer "y" rather than "yes"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; (setq shell-file-name "/bin/bash")
+
 ;;------------------------------------------------------------------------------
 ;; font configuration
 ;;------------------------------------------------------------------------------
@@ -84,7 +86,7 @@
     (add-to-list 'default-frame-alist '(font . "Monaco-12"))))
  ((string-equal system-type "gnu/linux") ; linux
   (when (member "Inconsolata for Powerline" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Inconsolata for Powerline-12"))
-    (add-to-list 'default-frame-alist '(font . "Inconsolata for Powerline-12")))))
+    (add-to-list 'initial-frame-alist '(font . "Inconsolata for Powerline-11"))
+    (add-to-list 'default-frame-alist '(font . "Inconsolata for Powerline-11")))))
 
 (provide 'my-basic)

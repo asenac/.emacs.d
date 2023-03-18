@@ -156,6 +156,9 @@
                       " P"
                     (format " P[%s]" (projectile-project-name)))))
 
+    (setq projectile-indexing-method 'alien)
+    (setq projectile-enable-caching t)
+
     (defun my/projectile-multi-term-in-root ()
       "Invoke `multi-term' in the project's root."
       (interactive)

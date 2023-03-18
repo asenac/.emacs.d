@@ -36,8 +36,8 @@
     "ag" 'helm-projectile-rg
     "ak" 'projectile-kill-buffers
     "ao" 'helm-projectile-switch-project
-    ;; "as" 'helm-projectile
-    "as" 'helm-find-files
+    "as" 'helm-projectile
+    ;; "as" 'helm-find-files
     "at" 'my/projectile-multi-term-in-root
     "aT" 'projectile-run-eshell
     "ax" 'my/helm-execute
